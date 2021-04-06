@@ -2,8 +2,7 @@
 
   "name": "Pomodoro",
   "version": "0.1.0",
-  "permissions": ["activeTab", "declarativeContent", "storage","contextMenus"],
-
+  "permissions": ["<all_urls>", "activeTab" ,"notifications", "tabs", "storage"],
   "browser_action": {
     "default_popup": "home.html",
     "default_icon" : {
@@ -12,6 +11,16 @@
       "48": "tomato.png"
     }
   },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": ["script.js"]
+    }
+  ],
+
   "background": {
     "scripts": ["background.js"]
   },

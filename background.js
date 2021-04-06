@@ -1,5 +1,10 @@
+chrome.storage.sync.set({
+    key: tid}, () => {
+    console.log("values et to;" + tid
+    )
+})
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.sendMessage(tab.id, { message: 'load' });
+
+chrome.storage.sync.get(['key'], function(result) {
+    console.log('Value currently is ' + result.key);
 });
-
