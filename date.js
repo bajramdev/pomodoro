@@ -5,11 +5,19 @@ let setDate;
 let pauseDate;
 let alarmDate;
 
+
+
+
+
 function setAlarm(tMillis)
 {
     interval = tMillis;
     ringIn(tMillis + guiLagAdjustment);
 }
+
+
+
+
 
 
 function ringIn(tMillis)
@@ -118,3 +126,61 @@ function error()
 {
     alert("Please enter a number between 1 and 240.");
 }
+
+
+/*
+
+function startTimer(duration, display) {
+    let start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+    function timer() {
+
+    let intrv = setInterval(() => {
+
+
+            // get the number of seconds that have elapsed since
+            // startTimer() was called
+
+
+
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+            console.log(diff)
+
+         //   if(paused){
+                //send to background
+           //     diff = duration;
+            //}
+
+            // does the same job as parseInt truncates the float
+            minutes = (diff / 60) | 0;
+            seconds = (diff % 60) | 0;
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display = minutes + ":" + seconds;
+
+            if (diff <= 0) {
+
+                clearInterval(intrv)
+                start = Date.now() + 1000;
+            }
+
+        } , 5000)
+
+    }
+
+    timer()
+    // we don't want to wait a full second before the timer starts
+
+}
+
+function a() {
+    let fiveMinutes = 60 * 25, display = '25:00'
+    startTimer(fiveMinutes, display);
+}
+
+ */

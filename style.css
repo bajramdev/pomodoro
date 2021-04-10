@@ -37,6 +37,13 @@ body {
     justify-content: space-around;
 }
 
+.start {
+    display: inline;
+}
+#stop {
+    display: none;
+}
+
 .timeperiod{
     align-items: flex-start;
 }

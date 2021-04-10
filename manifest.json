@@ -18,11 +18,13 @@
         "<all_urls>"
       ],
       "js": ["script.js"]
+
     }
   ],
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"],
+    "persistent" : false
   },
   "icons": {
     "16": "tomato.png",
