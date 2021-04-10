@@ -8,9 +8,10 @@
     <div class="bigdiv">
         <div class="flexbox">
             <div class="timepops">
-            <div class="timeperiod"><span class="time" id="time" >1:00</span></div>
+            <div class="timeperiod"><span class="time" id="time" >25:00</span></div>
             <div>
                 <button id="start" >Start</button>
+                <button id="stop" >Stop</button>
                 <button id="reset" >Reset</button>
             </div>
             </div>
@@ -26,17 +27,34 @@
             <div class="arbete" >Shuffla din arbetsplats
             </div>
 
+            <audio id="audio-1"
+                   src="https://www.mboxdrive.com/yt1s.com%20-%204K%20Relaxing%20River%20%20Ultra%20HD%20Nature%20Video%20%20%20Water%20Stream%20%20Birdsong%20Sounds%20%20SleepStudyMeditate.mp3">
+            </audio>
+            <audio id="audio-2"
+                   src="https://www.mboxdrive.com/lofi.mp3">
+            </audio>
+
 
         <div class="song" >
-            <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/96/000000/cloud-with-rain-emoji.png" height="35px" ></button></a>
-            <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/48/000000/national-park-emoji.png"  height="35px" ></button></a>
-            <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/48/000000/crystal-ball-.png" height="35px" ></button></a>
+            <a class="button-wrap"><button id="rainbtn" ><img src="https://img.icons8.com/emoji/96/000000/cloud-with-rain-emoji.png" height="35px" ></button></a>
+            <a class="button-wrap">
+
+
+                <button id="nature" >
+                    <img src="https://img.icons8.com/emoji/48/000000/national-park-emoji.png"  height="35px">
+                </button></a>
+            <a class="button-wrap"><button id="crystal" ><img src="https://img.icons8.com/emoji/48/000000/crystal-ball-.png" height="35px" ></button></a>
         </div>
             <div class="song" >
             <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/48/000000/night-with-stars.png" height="35px" ></button></a>
-            <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/48/000000/headphone-emoji.png" height="35px" ></button></a>
+            <a class="button-wrap"><button id="hesset" ><img src="https://img.icons8.com/emoji/48/000000/headphone-emoji.png" height="35px" ></button></a>
             <a class="button-wrap"><button><img src="https://img.icons8.com/emoji/48/000000/video-game-emoji.png" height="35px" ></button></a>
         </div>
+
+
+            <div class="slidecontainer">
+                <input class="slider" type="range" min="0" max="100" step="any" value="50"  id="myRange">
+            </div>
 
 
         </div>
