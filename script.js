@@ -1,15 +1,18 @@
 let refreshDisplayTimeout;
 let bgpage = chrome.extension.getBackgroundPage();
+
 let editing = false;
 
-document.addEventListener('DOMContentLoaded', function () {
+const pomodoroMinutes = 25;
 
+document.addEventListener('DOMContentLoaded', function () {
     load();
 document.querySelector('#start').addEventListener('click', setTimer, false)
 
 document.querySelector('#reset').addEventListener('click', restartTimer, false)
 
-document.querySelector('#stop').addEventListener('click', pauseTimer, false)
+
+document.querySelector('#stop').addEventListener('click', stopTimer, false)
 //document.querySelector('#myRange').addEventListener('input', volumeControl, false)
 
 });
@@ -26,22 +29,38 @@ function hide(section){
     document.getElementById(section).style.display = "none";
 }
 
+function getMilliFromMinutes() {
+    return pomodoroMinutes * 60000;
+}
 
-
-function load(){
-    hide("resume");
-
+function load()
+{
+    hide('stop')
     // if timer is paused, show resume button and hide pause button
     if(bgpage.pauseDate)
     {
-        showInline("resume");
-        hide("pause");
+       showInline("start")
+        hide("stop")
     }
+        console.log("in else")
+        refreshDisplay();
+
+
+
+
     // else, show countdown
-    refreshDisplay();
+    //refreshDisplay();
 }
 
-function setTimer(){
+function setTimer()
+{
+
+    hide("start");
+    showInline("stop");
+
+
+    console.log("pressed")
+
     // make sure we're dealing with text not fields
     //if(editing)
       //  swapBack();
@@ -56,10 +75,8 @@ function setTimer(){
 
     try {
 
-        bgpage.setAlarm(num * 60000);
-        hide("settings");
-        show("modify");
-        show("display");
+
+        bgpage.setAlarm(pomodoroMinutes * 60000);
         refreshDisplay();
 
     }
@@ -69,65 +86,42 @@ function setTimer(){
      bgpage.error();
  }
 
-
-}
-
-// Returns true if 0 <= amt <= 240
-function isValid(amt)
-{
-    if(isNaN(amt) || (amt == null))
-        return false;
-    else if((amt < 0) || (amt > 240))
-        return false;
-    else
-        return true;
 }
 
 function refreshDisplay()
-{
-    percent = bgpage.getTimeLeftPercent();
 
-    if(percent < 15)
-    document.getElementById("bar").style.color = "grey";
-    document.getElementById("bar").textContent = bgpage.getTimeLeftString();
-    document.getElementById("bar").style.width = percent + "%";
+
+{
+    document.getElementById("time").innerHTML = bgpage.getTimeLeftString(); // Timeleft
+  //  document.getElementById("bar").style.width = percent + "%";
 
     refreshDisplayTimeout = setTimeout(refreshDisplay, 100);
+
 }
 
-function pauseTimer()
+function stopTimer()
 {
-    hide("pause");
-    showInline("resume");
+    hide("stop");
+    showInline("start");
     bgpage.pause();
     clearTimeout(refreshDisplayTimeout);
 }
 
 function resumeTimer()
 {
-    hide("resume");
-    showInline("pause");
+    hide("start");
+    showInline("stop");
     refreshDisplay();
     bgpage.resume();
 }
 
 function restartTimer()
 {
-    hide("resume");
-    showInline("pause");
+    hide("start");
+    showInline("stop");
     refreshDisplay();
     bgpage.restart();
 }
-
-function reset()
-{
-    clearTimeout(refreshDisplayTimeout);
-    bgpage.turnOff();
-    hide("display");
-    show("settings");
-    hide("modify");
-}
-
 
 /*
  * function startTimera(duration, display) {

@@ -5,15 +5,22 @@ let setDate;
 let pauseDate;
 let alarmDate;
 
+var greenColor = [76, 187, 23, 255];
+var yellowColor = [250, 150, 0, 255];
+
+
 function setAlarm(tMillis)
 {
+
+
     interval = tMillis;
-    ringIn(tMillis + guiLagAdjustment);
+    console.log(interval)
+    ringIn(tMillis);
 }
 
 
-function ringIn(tMillis)
-{
+
+function ringIn(tMillis) {
     clearTimeout(timeout);
     pauseDate = null;
 
@@ -25,7 +32,7 @@ function ringIn(tMillis)
     let millis = tMillis % 1000;
 
     alarmDate = new Date();
-    // alarmDate.setTime(alarmDate.getTime() + millis);
+    alarmDate.setTime(alarmDate.getTime() + millis);
     alarmDate.setHours(alarmDate.getHours() + tHrs);
     alarmDate.setMinutes(alarmDate.getMinutes() + mins);
     alarmDate.setSeconds(alarmDate.getSeconds() + secs);
@@ -40,8 +47,7 @@ function ringIn(tMillis)
     }, 1000);
 }
 
-function pause()
-{
+function pause() {
     pauseDate = new Date();
     clearTimeout(timeout);
     chrome.browserAction.setBadgeBackgroundColor({color:yellowColor});
@@ -55,7 +61,7 @@ function resume()
 
 function restart()
 {
-    ringIn(interval + guiLagAdjustment);
+    ringIn(interval);
 }
 
 function getTimeLeft()
@@ -66,28 +72,25 @@ function getTimeLeft()
     var now = new Date();
     return (alarmDate.getTime() - now.getTime());
 }
-
-function getTimeLeftPercent()
-{
-    return parseInt(getTimeLeft() / interval * 100);
-}
+// dont need i tink
 
 
 function getTimeLeftString()
 {
-    var until = getTimeLeft();
-    var tSecs = parseInt(until / 1000);
-    var tMins = parseInt(tSecs / 60);
-    var secs = tSecs % 60;
-    var tHrs = parseInt(tMins / 60);
-    var mins = tMins % 60;
+    let until = getTimeLeft();
+    console.log(until)
+    let tSecs = parseInt(until / 1000);
+    let tMins = parseInt(tSecs / 60);
+    let secs = tSecs % 60;
+    let tHrs = parseInt(tMins / 60);
+    let mins = tMins % 60;
     if(secs < 10) secs = "0" + secs;
     if(mins < 10) mins = "0" + mins;
     if(tHrs < 10) tHrs = "0" + tHrs;
     return ((tHrs > 0 ? tHrs + ":" : "") + mins + ":" + secs);
 }
 
-function didCreateNotification(notificationId) {}
+//function didCreateNotification(notificationId) {}
 
 function ring()
 {
@@ -97,20 +100,15 @@ function ring()
         message: "Your time to work bozo!",
         iconUrl: "tomato.png"
     }
-    chrome.notifications.create("", options, didCreateNotification);
+    chrome.notifications.create("", options);
 
     alarmSound.play();
     turnOff();
 }
 
-
 function turnOff()
 {
     clearTimeout(timeout);
-    interval = 0;
-    alarmDate = null;
-    pauseDate = null;
-    setDate = null;
     chrome.browserAction.setBadgeText({text: ""});
 }
 
