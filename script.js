@@ -7,7 +7,8 @@ const pomodoroMinutes = 25;
 
 document.addEventListener('DOMContentLoaded', function () {
     load();
-document.querySelector('#start').addEventListener('click', setTimer, false)
+
+document.querySelector('#start').addEventListener('click', resumeTimer, false)
 
 document.querySelector('#reset').addEventListener('click', restartTimer, false)
 
@@ -35,21 +36,31 @@ function getMilliFromMinutes() {
 
 function load()
 {
+
+
     hide('stop')
     // if timer is paused, show resume button and hide pause button
     if(bgpage.pauseDate)
     {
        showInline("start")
-        hide("stop")
+       hide("stop")
     }
-        console.log("in else")
+
+    if(bgpage.alarmDate){
         refreshDisplay();
+    }
+
+
+    if(bgpage.until === 'undefined') {
+        setTimer()
+    }
+
 
 
 
 
     // else, show countdown
-    //refreshDisplay();
+   // refreshDisplay();
 }
 
 function setTimer()
@@ -74,8 +85,6 @@ function setTimer()
    // if(isValid(num))
 
     try {
-
-
         bgpage.setAlarm(pomodoroMinutes * 60000);
         refreshDisplay();
 
@@ -88,10 +97,8 @@ function setTimer()
 
 }
 
-function refreshDisplay()
-
-
-{
+function refreshDisplay() {
+    console.log("refresh")
     document.getElementById("time").innerHTML = bgpage.getTimeLeftString(); // Timeleft
   //  document.getElementById("bar").style.width = percent + "%";
 

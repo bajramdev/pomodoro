@@ -5,16 +5,14 @@ let setDate;
 let pauseDate;
 let alarmDate;
 
-var greenColor = [76, 187, 23, 255];
-var yellowColor = [250, 150, 0, 255];
+let greenColor = [76, 187, 23, 255];
+let yellowColor = [250, 150, 0, 255];
 
 
 function setAlarm(tMillis)
 {
-
-
     interval = tMillis;
-    console.log(interval)
+
     ringIn(tMillis);
 }
 
@@ -49,13 +47,14 @@ function ringIn(tMillis) {
 
 function pause() {
     pauseDate = new Date();
+   // console.log("p date" , pauseDate)
     clearTimeout(timeout);
     chrome.browserAction.setBadgeBackgroundColor({color:yellowColor});
 }
 
 function resume()
 {
-    var remainingAfterPause = (alarmDate.getTime() - pauseDate.getTime());
+    let remainingAfterPause = (alarmDate.getTime() - pauseDate.getTime());
     ringIn(remainingAfterPause);
 }
 
@@ -69,7 +68,9 @@ function getTimeLeft()
     if (pauseDate)
         return (alarmDate.getTime() - pauseDate.getTime());
 
-    var now = new Date();
+    let now = new Date();
+   // console.log(now, "now")
+   // console.log(alarmDate)
     return (alarmDate.getTime() - now.getTime());
 }
 // dont need i tink
@@ -77,6 +78,8 @@ function getTimeLeft()
 
 function getTimeLeftString()
 {
+
+   // console.log("time left")
     let until = getTimeLeft();
     console.log(until)
     let tSecs = parseInt(until / 1000);
