@@ -37,11 +37,12 @@ body {
     justify-content: space-around;
 }
 
-.start {
-    display: inline;
+.resume {
+    display: none;
+
 }
 #stop {
-    display: none;
+    display: inline;
 }
 
 .timeperiod{
