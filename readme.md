@@ -9,11 +9,9 @@ To run:
 3. Enable developer settings
 4. Choose Unpack zipfile. 
 
-![alt-text](https://i.imgur.com/fNiFLD3.png)
+![SettingsCapture](https://i.imgur.com/8g9ajpT.png)
 
-
-![alt-text](https://i.imgur.com/8g9ajpT.png)
-
+![SettingsCapture](https://i.imgur.com/fNiFLD3.png)
 
 
 Contribution :
