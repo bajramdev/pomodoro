@@ -5,8 +5,11 @@ Chrome extension is being published to chrome webstore but it is currently under
 To run: 
 
  ```1. Download repo as zip file```
+ 
  ```2. Go to chrome extension```
+ 
  ```3. Enable developer settings```
+ 
  ```4. Choose Unpack zipfile. ```
 
 ![SettingsCapture](https://i.imgur.com/8g9ajpT.png)
